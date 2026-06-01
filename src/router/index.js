@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from "../components/home.vue"
 import NotFound from "../components/notfound.vue"
 import Contact from "../components/contact.vue"
@@ -10,7 +10,7 @@ import SignOut from "../components/signout.vue"
 
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
