@@ -21,9 +21,9 @@ const items = [
     bgColor: "#000",
     textColor: "#fff",
     links: [
-      { label: "Dashboard", ariaLabel: "Dashboard", href: "/dashboard"},
-      { label: "Sign In", ariaLabel: "Sign In", href: "/signin"},
-      { label: "Sign Out", ariaLabel: "Sign out", href: "/signout"},
+      { label: "Dashboard", ariaLabel: "Dashboard", href: "/#/dashboard"},
+      { label: "Sign In", ariaLabel: "Sign In", href: "/#/signin"},
+      { label: "Sign Out", ariaLabel: "Sign out", href: "/#/signout"},
     ]
   },
   {
@@ -31,8 +31,8 @@ const items = [
     bgColor: "#000",
     textColor: "#fff",
     links: [
-      { label: "Services", ariaLabel: "Services", href: "/services"},
-      { label: "Documentation", ariaLabel: "Documentation", href: "/documentation" },
+      { label: "Services", ariaLabel: "Services", href: "/#/services"},
+      { label: "Documentation", ariaLabel: "Documentation", href: "/#/documentation" },
 
     ]
   },
@@ -41,9 +41,9 @@ const items = [
     bgColor: "#000",
     textColor: "#fff",
     links: [
-      {label: "Home", ariaLabel: "Home", href: "/"},
-      { label: "About", ariaLabel: "About HereWeGo", href: "/about" },
-      { label: "Contact", ariaLabel: "Contact HereWeGo", href: "/contact" }
+      {label: "Home", ariaLabel: "Home", href: "/#/"},
+      { label: "About", ariaLabel: "About HereWeGo", href: "/#/about" },
+      { label: "Contact", ariaLabel: "Contact HereWeGo", href: "/#/contact" }
     ]
   }
 ]
