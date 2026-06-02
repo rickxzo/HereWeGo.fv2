@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router';
+import { RouterLink } from 'vue-router';
+  
 import { gsap } from 'gsap';
 import { nextTick, onBeforeUpdate, onMounted, onUnmounted, ref, watch, type VNodeRef } from 'vue';
 
@@ -243,16 +246,22 @@ watch(
             {{ item.label }}
           </div>
           <div class="flex flex-col gap-[2px] mt-auto nav-card-links">
-            <a
+            <component
               v-for="(lnk, i) in item.links"
               :key="`${lnk.label}-${i}`"
-              class="inline-flex items-center gap-[6px] hover:opacity-75 text-[15px] md:text-[16px] no-underline transition-opacity duration-300 cursor-pointer nav-card-link"
+              :is="lnk.to ? RouterLink : 'a'"
+              :to="lnk.to"
               :href="lnk.href"
               :aria-label="lnk.ariaLabel"
+              class="inline-flex items-center gap-[6px] hover:opacity-75 text-[15px] md:text-[16px] no-underline transition-opacity duration-300 cursor-pointer nav-card-link"
             >
-              <v-icon name="go-arrow-up-right" class="nav-card-link-icon shrink-0" aria-hidden="true" />
+              <v-icon
+                name="go-arrow-up-right"
+                class="nav-card-link-icon shrink-0"
+                aria-hidden="true"
+              />
               {{ lnk.label }}
-            </a>
+            </component>
           </div>
         </div>
       </div>
