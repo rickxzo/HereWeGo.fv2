@@ -32,7 +32,7 @@ const items = [
     textColor: "#fff",
     links: [
       { label: "Services", ariaLabel: "Services", to: "/services"},
-      { label: "Documentation", ariaLabel: "Documentation", href: "/documentation" },
+      { label: "Documentation", ariaLabel: "Documentation", to: "/documentation" },
 
     ]
   },
@@ -41,9 +41,9 @@ const items = [
     bgColor: "#000",
     textColor: "#fff",
     links: [
-      {label: "Home", ariaLabel: "Home", href: "/"},
-      { label: "About", ariaLabel: "About HereWeGo", href: "/about" },
-      { label: "Contact", ariaLabel: "Contact HereWeGo", href: "/contact" }
+      {label: "Home", ariaLabel: "Home", to: "/"},
+      { label: "About", ariaLabel: "About HereWeGo", to: "/about" },
+      { label: "Contact", ariaLabel: "Contact HereWeGo", to: "/contact" }
     ]
   }
 ]
