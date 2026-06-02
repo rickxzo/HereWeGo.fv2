@@ -125,6 +125,19 @@ const toggleMenu = () => {
   }
 };
 
+const closeMenu = () => {
+  if (!isExpanded.value) return;
+
+  isHamburgerOpen.value = false;
+
+  tlRef.value?.eventCallback('onReverseComplete', () => {
+    isExpanded.value = false;
+    tlRef.value?.eventCallback('onReverseComplete', null);
+  });
+
+  tlRef.value?.reverse();
+};
+
 const handleResize = () => {
   if (!tlRef.value) return;
 
@@ -253,6 +266,7 @@ watch(
               :to="lnk.to"
               :href="lnk.href"
               :aria-label="lnk.ariaLabel"
+              @click="closeMenu"
               class="inline-flex items-center gap-[6px] hover:opacity-75 text-[15px] md:text-[16px] no-underline transition-opacity duration-300 cursor-pointer nav-card-link"
             >
               <v-icon
