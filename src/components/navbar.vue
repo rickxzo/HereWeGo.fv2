@@ -21,9 +21,9 @@ const items = [
     bgColor: "#000",
     textColor: "#fff",
     links: [
-      { label: "Dashboard", ariaLabel: "Dashboard", href: "/dashboard"},
-      { label: "Sign In", ariaLabel: "Sign In", href: "/signin"},
-      { label: "Sign Out", ariaLabel: "Sign out", href: "/signout"},
+      { label: "Dashboard", ariaLabel: "Dashboard", to: "/dashboard"},
+      { label: "Sign In", ariaLabel: "Sign In", to: "/signin"},
+      { label: "Sign Out", ariaLabel: "Sign out", to: "/signout"},
     ]
   },
   {
@@ -31,7 +31,7 @@ const items = [
     bgColor: "#000",
     textColor: "#fff",
     links: [
-      { label: "Services", ariaLabel: "Services", href: "/services"},
+      { label: "Services", ariaLabel: "Services", to: "/services"},
       { label: "Documentation", ariaLabel: "Documentation", href: "/documentation" },
 
     ]
