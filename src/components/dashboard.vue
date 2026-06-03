@@ -15,7 +15,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="max-w-2xl mx-auto">
+  <div class="max-w-2xl mx-auto mt-36">
     <!-- Not Signed In -->
     <div
       v-if="!isAuthenticated"
