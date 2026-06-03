@@ -19,7 +19,7 @@ onBeforeMount(() => {
     <!-- Not Signed In -->
     <div
       v-if="!isAuthenticated"
-      class="border border-white/10 rounded-2xl p-6"
+      class="rounded-2xl p-6"
       :style="{
         backgroundColor: 'rgba(80, 80, 80, 0.25)',
         backdropFilter: 'blur(12px)',
@@ -45,7 +45,7 @@ onBeforeMount(() => {
     <!-- Signed In -->
     <div
       v-else
-      class="border border-white/10 rounded-2xl p-6"
+      class="rounded-2xl p-6"
       :style="{
         backgroundColor: 'rgba(80, 80, 80, 0.25)',
         backdropFilter: 'blur(12px)',
