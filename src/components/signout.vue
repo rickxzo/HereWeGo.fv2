@@ -5,7 +5,10 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 onBeforeMount(() => {
-  localStorage.removeItem('access_token')
+  localStorage.removeItem('token')
+  localStorage.removeItem('avatar')
+  localStorage.removeItem('userId')
+  localStorage.removeItem('username')
   router.replace('/')
 })
 </script>
