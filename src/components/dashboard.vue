@@ -35,7 +35,7 @@ onBeforeMount(() => {
       </p>
 
       <RouterLink
-        to="/connect-github"
+        to="/signin"
         class="inline-flex mt-4 px-4 py-2 rounded-lg bg-emerald-500 text-black font-medium hover:opacity-90"
       >
         Sign In with GitHub
