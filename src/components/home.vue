@@ -30,13 +30,13 @@
         </p>
 
         <div class="mt-10 flex items-center gap-4">
-        <button
+        <button @click="hostApp"
             class="px-6 py-3 rounded-xl bg-white text-black font-medium pointer-events-auto"
         >
             Host Your App
         </button>
 
-        <button
+        <button @click="showDocs"
             class="px-6 py-3 rounded-xl border border-white/10 text-white/80 hover:text-white pointer-events-auto"
         >
             Docs
@@ -105,4 +105,15 @@
 
 <script setup lang="ts">
 import GradientBlinds from "./gb.vue";
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const hostApp = () => {
+  router.push('/dashboard')
+}
+
+const showDocs = () => {
+  router.push('/documentation')
+}
 </script>
