@@ -8,6 +8,8 @@ import Docs from "../components/docs.vue"
 import SignOut from "../components/signout.vue"
 import Auth from "../components/auth.vue"
 import Github from "../components/github.vue"
+import Dash from "../components/dashboard.vue"
+
 
 
 
@@ -54,7 +56,10 @@ const router = createRouter({
       component: Github
     },
 
-  
+    {
+      path: "/dashboard",
+      component: Dash
+    },
 
     {
       path: '/:pathMatch(.*)*',
