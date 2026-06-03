@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router';
 import { RouterLink } from 'vue-router';
+import { useRouter } from 'vue-router'
+const router = useRouter()
   
 import { gsap } from 'gsap';
 import { nextTick, onBeforeUpdate, onMounted, onUnmounted, ref, watch, type VNodeRef } from 'vue';
@@ -229,7 +231,7 @@ watch(
           <img :src="props.logo" :alt="props.logoAlt" class="h-[28px] logo" />
         </div>
 
-        <button
+        <button @click="router.push('/dashboard')"
           type="button"
           class="hidden md:inline-flex px-4 py-2 border-0 rounded-[calc(0.75rem-0.2rem)] h-full font-medium transition-colors duration-300 cursor-pointer card-nav-cta-button"
           :style="{
