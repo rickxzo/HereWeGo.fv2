@@ -6,6 +6,7 @@ import About from "../components/about.vue"
 import Services from "../components/services.vue"
 import Docs from "../components/docs.vue"
 import SignOut from "../components/signout.vue"
+import Auth from "../components/auth.vue"
 
 
 
@@ -41,6 +42,12 @@ const router = createRouter({
       path: "/signout",
       component: SignOut
     },
+
+    {
+      path: "/auth",
+      component: Auth
+    },
+
 
     {
       path: '/:pathMatch(.*)*',
