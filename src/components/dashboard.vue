@@ -19,7 +19,12 @@ onBeforeMount(() => {
     <!-- Not Signed In -->
     <div
       v-if="!isAuthenticated"
-      class="bg-slate-950 border border-white/10 rounded-2xl p-6"
+      class="border border-white/10 rounded-2xl p-6"
+      :style="{
+        backgroundColor: 'rgba(80, 80, 80, 0.25)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(32px)'
+      }"
     >
       <h2 class="text-xl font-semibold text-white">
         Sign In Required
@@ -40,7 +45,12 @@ onBeforeMount(() => {
     <!-- Signed In -->
     <div
       v-else
-      class="bg-[#12141f] border border-white/10 rounded-2xl p-6"
+      class="border border-white/10 rounded-2xl p-6"
+      :style="{
+        backgroundColor: 'rgba(80, 80, 80, 0.25)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(32px)'
+      }"
     >
       <div class="flex items-center gap-4">
         <img
