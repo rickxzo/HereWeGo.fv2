@@ -19,7 +19,7 @@ onBeforeMount(() => {
     <!-- Not Signed In -->
     <div
       v-if="!isAuthenticated"
-      class="bg-[#12141f] border border-white/10 rounded-2xl p-6"
+      class="bg-slate-950 border border-white/10 rounded-2xl p-6"
     >
       <h2 class="text-xl font-semibold text-white">
         Sign In Required
