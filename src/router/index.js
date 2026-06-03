@@ -7,6 +7,7 @@ import Services from "../components/services.vue"
 import Docs from "../components/docs.vue"
 import SignOut from "../components/signout.vue"
 import Auth from "../components/auth.vue"
+import Github from "../components/github.vue"
 
 
 
@@ -48,6 +49,12 @@ const router = createRouter({
       component: Auth
     },
 
+    {
+      path: "/signin",
+      component: Github
+    },
+
+  
 
     {
       path: '/:pathMatch(.*)*',
