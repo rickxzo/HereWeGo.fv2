@@ -125,27 +125,34 @@ onBeforeMount(async () => {
         </p>
       </div>
       <div class="mt-6 pt-6 border-t border-white/10">
-        <h3 class="text-lg font-medium text-white mb-4">
+        <h3 class="text-lg font-medium text-white mb-">
           Your Repositories
         </h3>
       
         <div
           v-if="loading"
-          class="text-gray-400"
+          class="rounded-xl border border-white/10 bg-white/5 overflow-hidden"
         >
           Loading repositories...
         </div>
       
         <div
           v-else-if="repos.length"
-          class="space-y-1 max-h-[500px] overflow-y-auto"
+          class="space-y-1 h-72 overflow-y-auto"
         >
           <a
             v-for="repo in repos"
             :key="repo.id"
             href="#"
-            class="block px-4 py-3 rounded-lg hover:bg-white/5 transition"
+            class="flex items-center px-4 py-3 border-b border-white/5 hover:bg-white/5 transition-colors"
           >
+            <svg
+              class="w-4 h-4 mr-3 text-gray-400"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M2 2.75A1.75 1.75 0 013.75 1h8.5A1.75 1.75 0 0114 2.75v10.5A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25V2.75z"/>
+            </svg>
             <div class="text-white">
               <span class="font-medium">
                 {{ repo.full_name }}
