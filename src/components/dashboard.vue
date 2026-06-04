@@ -2,15 +2,49 @@
 import { ref, onBeforeMount } from 'vue'
 
 const isAuthenticated = ref(false)
+const repos = ref([])
+const loading = ref(false)
 
 const user = {
   username: localStorage.getItem('username') || 'GitHub User',
   avatar: localStorage.getItem('avatar') || ''
 }
 
-onBeforeMount(() => {
+const fetchRepos = async () => {
+  try {
+    loading.value = true
+
+    const token = localStorage.getItem('token')
+
+    const response = await fetch(
+      'https://herewego-3kgp.onrender.com/api/github-repos',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch repositories')
+    }
+
+    repos.value = await response.json()
+  } catch (error) {
+    console.error(error)
+  } finally {
+    loading.value = false
+  }
+}
+
+onBeforeMount(async () => {
   const token = localStorage.getItem('token')
+
   isAuthenticated.value = !!token
+
+  if (token) {
+    await fetchRepos()
+  }
 })
 </script>
 
@@ -89,6 +123,43 @@ onBeforeMount(() => {
             herewego-3kgp.onrender.com
           </a>.
         </p>
+      </div>
+      <div class="mt-6 pt-6 border-t border-white/10">
+        <h3 class="text-lg font-medium text-white mb-4">
+          Your Repositories
+        </h3>
+      
+        <div
+          v-if="loading"
+          class="text-gray-400"
+        >
+          Loading repositories...
+        </div>
+      
+        <div
+          v-else-if="repos.length"
+          class="space-y-1 max-h-[500px] overflow-y-auto"
+        >
+          <a
+            v-for="repo in repos"
+            :key="repo.id"
+            href="#"
+            class="block px-4 py-3 rounded-lg hover:bg-white/5 transition"
+          >
+            <div class="text-white">
+              <span class="font-medium">
+                {{ repo.full_name }}
+              </span>
+            </div>
+          </a>
+        </div>
+      
+        <div
+          v-else
+          class="text-gray-400"
+        >
+          No repositories found.
+        </div>
       </div>
     </div>
   </div>
