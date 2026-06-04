@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, computed } from 'vue'
 
 const isAuthenticated = ref(false)
 const repos = ref([])
