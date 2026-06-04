@@ -10,6 +10,15 @@ const user = {
   avatar: localStorage.getItem('avatar') || ''
 }
 
+const search = ref('')
+
+const filteredRepos = computed(() => {
+  return repos.value.filter(repo =>
+    repo.full_name.toLowerCase()
+      .includes(search.value.toLowerCase())
+  )
+})
+
 const fetchRepos = async () => {
   try {
     loading.value = true
