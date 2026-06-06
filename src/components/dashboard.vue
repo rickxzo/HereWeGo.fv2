@@ -123,6 +123,7 @@ onBeforeMount(async () => {
 
         <p class="text-gray-400 mt-2 leading-relaxed">
           The new HereWeGo dashboard is currently under active development.
+          Find the under-progress dashboard at /dashpeek.
           In the meantime, you can continue using the fully functional version at
           <a
             href="https://herewego-3kgp.onrender.com"
