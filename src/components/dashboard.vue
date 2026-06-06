@@ -130,7 +130,7 @@ onBeforeMount(async () => {
             class="text-emerald-400 hover:underline"
           >
             herewego-3kgp.onrender.com
-          </a>.
+          </a>
         </p>
       </div>
       </div>
