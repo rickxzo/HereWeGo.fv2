@@ -22,6 +22,7 @@ const items = [
     textColor: "#fff",
     links: [
       { label: "Dashboard", ariaLabel: "Dashboard", to: "/dashboard"},
+      { label: "DashPeek", ariaLabel: "Dashboard", to: "/dashpeek"},
       { label: "Sign In", ariaLabel: "Sign In", to: "/signin"},
       { label: "Sign Out", ariaLabel: "Sign out", to: "/signout"},
     ]
