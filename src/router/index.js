@@ -9,6 +9,7 @@ import SignOut from "../components/signout.vue"
 import Auth from "../components/auth.vue"
 import Github from "../components/github.vue"
 import Dash from "../components/dashboard.vue"
+import Dash2 from "../components/dashboard2.vue"
 
 
 
@@ -59,6 +60,11 @@ const router = createRouter({
     {
       path: "/dashboard",
       component: Dash
+    },
+
+    {
+      path: "/dashpeek",
+      component: Dash2
     },
 
     {
