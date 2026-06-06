@@ -133,39 +133,6 @@ onBeforeMount(async () => {
           </a>.
         </p>
       </div>
-      <div class="mt-6 pt-6 border-t border-white/10">
-        <h3 class="text-lg font-medium text-white mb-4">
-          Your Repositories
-        </h3>
-      
-        <div class="border border-white/10 rounded-xl overflow-hidden">
-          <!-- Search -->
-          <div class="p-3 border-b border-white/10">
-            <input
-              v-model="search"
-              type="text"
-              placeholder="Search repositories..."
-              class="w-full bg-transparent outline-none text-white"
-            />
-          </div>
-      
-          <!-- Repo List -->
-          <div class="max-h-80 overflow-y-auto">
-            <button
-              v-for="repo in filteredRepos"
-              :key="repo.id"
-              class="w-full text-left px-4 py-3 border-b border-white/5 hover:bg-white/5 transition"
-            >
-              <div class="flex items-center gap-3">
-                <i class="fa-brands fa-github text-gray-400"></i>
-      
-                <span class="text-white">
-                  {{ repo.full_name }}
-                </span>
-              </div>
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   </div>
