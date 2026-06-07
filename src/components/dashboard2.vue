@@ -477,7 +477,7 @@ onBeforeMount(async () => {
     <div
       v-for="config in configs"
       :key="config.id"
-      class="bg-black border border-gray-700 rounded-2xl p-5 hover:bg-zinc-950 transition"
+      class="bg-black border border-white/10 rounded-2xl p-5 hover:bg-zinc-950 transition"
     >
       <div class="flex justify-between items-start mb-4">
         <div>
