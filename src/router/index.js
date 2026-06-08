@@ -58,12 +58,12 @@ const router = createRouter({
     },
 
     {
-      path: "/dashboard",
+      path: "/dashboard2",
       component: Dash
     },
 
     {
-      path: "/dashpeek",
+      path: "/dashboard",
       component: Dash2
     },
 
