@@ -785,6 +785,11 @@ onBeforeMount(async () => {
         text-zinc-300
         whitespace-pre-wrap
       "
+      :style="{
+        backgroundColor: 'rgba(80, 80, 80, 0.25)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(32px)'
+      }"
     >
       <div v-if="logsLoading" class="text-gray-400">
         Loading logs...
