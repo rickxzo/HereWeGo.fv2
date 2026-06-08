@@ -338,6 +338,7 @@ onBeforeMount(async () => {
   isAuthenticated.value = !!token
 
   if (token) {
+    loading.value = true
     await fetchRepos()
     await fetchConfigs()
   }
@@ -564,7 +565,7 @@ onBeforeMount(async () => {
 
   <div
     v-else
-    class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 text-center text-zinc-400"
+    class="bg-black border border-white/10 rounded-xl p-8 text-center text-zinc-400"
   >
     No deployments found.
   </div>
