@@ -9,6 +9,9 @@ const domain = ref('')
 const buildCommand = ref('')
 const runCommand = ref('')
 const envVariables = ref('')
+const currentView = ref('webapps') 
+const functions = ref([])
+const loadingFunctions = ref(false)
 
 const savingConfig = ref(false)
 
@@ -262,6 +265,8 @@ const deleteConfig = async (config) => {
   }
 }
 
+
+
 const showLogsModal = ref(false)
 const logs = ref('')
 const logsLoading = ref(false)
@@ -332,6 +337,27 @@ const closeLogsModal = () => {
   selectedDeploymentId.value = null
 }
 
+const fetchFunctions = async () => {
+  try {
+    loadingFunctions.value = true
+
+    const res = await fetch(
+      'https://herewego-3kgp.onrender.com/api/functions',
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }
+    )
+
+    functions.value = await res.json()
+  } catch (err) {
+    console.error(err)
+  } finally {
+    loadingFunctions.value = false
+  }
+}
+
 onBeforeMount(async () => {
   const token = localStorage.getItem('token')
 
@@ -340,7 +366,8 @@ onBeforeMount(async () => {
   if (token) {
     const results = await Promise.allSettled([
       fetchRepos(),
-      fetchConfigs()
+      fetchConfigs(),
+      fetchFunctions()
     ])
 
   }
@@ -378,7 +405,34 @@ onBeforeMount(async () => {
     <!-- Signed In -->
     <div v-else >
 
+    <div class="flex gap-2 mb-6">
+  <button
+    @click="currentView = 'webapps'"
+    class="px-4 py-2 rounded-xl transition"
+    :class="
+      currentView === 'webapps'
+        ? 'bg-white text-black'
+        : 'bg-black border border-white/10 text-white'
+    "
+  >
+    Web Apps
+  </button>
+
+  <button
+    @click="currentView = 'functions'"
+    class="px-4 py-2 rounded-xl transition"
+    :class="
+      currentView === 'functions'
+        ? 'bg-white text-black'
+        : 'bg-black border border-white/10 text-white'
+    "
+  >
+    Functions
+  </button>
+</div>
+
         <!-- Top Row -->
+    <div v-if="currentView === 'webapps'">
     <div class="flex gap-4 items-stretch mb-6">
 
     <!-- Repo Count -->
@@ -575,6 +629,63 @@ onBeforeMount(async () => {
     
 
     </div>
+    </div>
+    <div v-if="currentView === 'functions'">
+
+  <h2 class="text-xl font-semibold text-white mb-4">
+    Functions
+  </h2>
+
+  <div
+    v-if="loadingFunctions"
+    class="text-zinc-400"
+  >
+    Loading functions...
+  </div>
+
+  <div
+    v-else-if="functions.length"
+    class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
+  >
+    <div
+      v-for="fn in functions"
+      :key="fn.id"
+      class="bg-black border border-white/10 rounded-2xl p-5"
+    >
+      <h3 class="text-lg font-semibold text-white mb-3">
+        {{ fn.name }}
+      </h3>
+
+      <a
+        :href="fn.url"
+        target="_blank"
+        class="block text-sm text-gray-400 hover:underline break-all mb-4"
+      >
+        {{ fn.url }}
+      </a>
+
+      <pre
+        class="
+          text-xs
+          text-zinc-300
+          bg-zinc-950
+          rounded-lg
+          p-3
+          overflow-auto
+          max-h-64
+        "
+      >{{ fn.code }}</pre>
+    </div>
+  </div>
+
+  <div
+    v-else
+    class="bg-black border border-white/10 rounded-xl p-8 text-center text-zinc-400"
+  >
+    No functions found.
+  </div>
+
+</div>
     <!-- Modal -->
     <div
       v-if="showModal"
