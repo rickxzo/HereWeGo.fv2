@@ -745,45 +745,91 @@ onBeforeMount(async () => {
     </div>
     <div
   v-if="showLogsModal"
-  class="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+  class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70"
+  :style="{
+    backgroundColor: 'rgba(80, 80, 80, 0.25)',
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(32px)'
+  }"
 >
   <div
-    class="w-[90vw] max-w-5xl h-[80vh] bg-zinc-900 border border-zinc-800 rounded-2xl flex flex-col"
+    class="w-full max-w-4xl rounded-2xl bg-black border border-white/10 p-6"
   >
 
     <!-- Header -->
-    <div class="p-4 border-b border-zinc-800 flex justify-between items-center">
+    <div class="flex justify-between items-center mb-4">
       <h2 class="text-xl font-semibold text-white">
         Deployment Logs
       </h2>
 
-      <div class="flex gap-2">
-        <button
-          @click="refreshLogs"
-          class="px-4 py-2 rounded-lg bg-emerald-500 text-black font-medium"
-        >
-          Refresh
-        </button>
-
-        <button
-          @click="closeLogsModal"
-          class="px-4 py-2 rounded-lg border border-zinc-700 text-white"
-        >
-          Close
-        </button>
-      </div>
+      <button
+        @click="closeLogsModal"
+        class="text-gray-400 hover:text-white text-xl"
+      >
+        ×
+      </button>
     </div>
 
-    <!-- Logs -->
+    <!-- Logs Box -->
     <div
-      class="flex-1 overflow-y-auto p-4 font-mono text-sm text-zinc-300 whitespace-pre-wrap"
       ref="logsContainer"
+      class="
+        h-[500px]
+        overflow-y-auto
+        rounded-xl
+        bg-black/30
+        border border-white/10
+        p-4
+        font-mono
+        text-sm
+        text-zinc-300
+        whitespace-pre-wrap
+      "
     >
-      <div v-if="logsLoading">
+      <div v-if="logsLoading" class="text-gray-400">
         Loading logs...
       </div>
 
-      <pre v-else>{{ logs }}</pre>
+      <pre v-else class="whitespace-pre-wrap break-words">
+{{ logs }}
+      </pre>
+    </div>
+
+    <!-- Footer Buttons -->
+    <div class="flex gap-3 mt-4">
+
+      <button
+        @click="refreshLogs"
+        class="
+          flex-1
+          py-3
+          rounded-xl
+          bg-white
+          text-black
+          font-semibold
+          hover:opacity-90
+          transition
+        "
+      >
+        Refresh Logs
+      </button>
+
+      <button
+        @click="closeLogsModal"
+        class="
+          px-8
+          py-3
+          rounded-xl
+          bg-white
+          text-black
+          font-medium
+          hover:opacity-90
+          transition
+        "
+      >
+        Close
+      </button>
+
     </div>
 
   </div>
