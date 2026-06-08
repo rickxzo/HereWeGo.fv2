@@ -338,9 +338,11 @@ onBeforeMount(async () => {
   isAuthenticated.value = !!token
 
   if (token) {
-    loading.value = true
-    await fetchRepos()
-    await fetchConfigs()
+    const results = await Promise.allSettled([
+      fetchRepos(),
+      fetchConfigs()
+    ])
+
   }
 })
 </script>
