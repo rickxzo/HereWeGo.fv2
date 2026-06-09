@@ -656,7 +656,7 @@ onBeforeMount(async () => {
         {{ fn.name }}
       </h3>
 
-      <h4 class="text-lg font-semibold text-white mb-3">
+      <h4 class="text-sm font-semibold text-white mb-3">
         {{ fn.language }}
       </h4>
 
