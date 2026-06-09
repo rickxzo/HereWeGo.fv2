@@ -656,6 +656,11 @@ onBeforeMount(async () => {
         {{ fn.name }}
       </h3>
 
+      <h4 class="text-lg font-semibold text-white mb-3">
+        {{ fn.language }}
+      </h4>
+
+
       <a
         :href="fn.url"
         target="_blank"
