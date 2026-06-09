@@ -358,6 +358,69 @@ const fetchFunctions = async () => {
   }
 }
 
+const showCreateFunctionModal = ref(false)
+
+const functionName = ref('')
+const functionLanguage = ref('Python 3.12')
+const functionCode = ref('')
+
+const creatingFunction = ref(false)
+const functionError = ref('')
+
+const functionLanguages = [
+  'Java 25',
+  'Node.js 24.x',
+  'Python 3.14',
+  'Ruby 4.0',
+  'Java 11',
+  'Java 17',
+  'Java 21',
+  'Java 8 on Amazon Linux 2',
+  'Node.js 22.x',
+  'Python 3.10',
+  'Python 3.11',
+  'Python 3.12',
+  'Python 3.13',
+  'Ruby 3.3',
+  'Ruby 3.4'
+]
+
+const createFunction = async () => {
+  try {
+    creatingFunction.value = true
+    functionError.value = ''
+
+    const res = await fetch(
+      `https://herewego-3kgp.onrender.com/api/create-function?name=${encodeURIComponent(functionName.value)}&language=${encodeURIComponent(functionLanguage.value)}&code=${encodeURIComponent(functionCode.value)}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }
+    )
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      throw new Error(data.detail || 'Failed to create function')
+    }
+
+    await fetchFunctions()
+
+    showCreateFunctionModal.value = false
+
+    functionName.value = ''
+    functionLanguage.value = 'Python 3.12'
+    functionCode.value = ''
+
+  } catch (err) {
+    functionError.value = err.message
+  } finally {
+    creatingFunction.value = false
+  }
+}
+
 onBeforeMount(async () => {
   const token = localStorage.getItem('token')
 
@@ -632,10 +695,18 @@ onBeforeMount(async () => {
     </div>
     <div v-if="currentView === 'functions'">
 
-  <h2 class="text-xl font-semibold text-white mb-4">
+  <div class="flex justify-between items-center mb-4">
+  <h2 class="text-xl font-semibold text-white">
     Functions
   </h2>
 
+  <button
+    @click="showCreateFunctionModal = true"
+    class="px-4 py-2 rounded-xl bg-white text-black font-medium"
+  >
+    Create Function
+  </button>
+</div>
   <div
     v-if="loadingFunctions"
     class="text-zinc-400"
@@ -656,10 +727,7 @@ onBeforeMount(async () => {
         {{ fn.name }}
       </h3>
 
-      <h4 class="text-sm font-semibold text-white mb-3">
-        {{ fn.language }}
-      </h4>
-
+      <p class="text-gray-300 mb-2 text-sm">{{ fn.language }}</p>
 
       <a
         :href="fn.url"
@@ -956,6 +1024,114 @@ onBeforeMount(async () => {
 
     </div>
 
+  </div>
+</div>
+<div
+  v-if="showCreateFunctionModal"
+  class="fixed inset-0 z-[100] flex items-center justify-center bg-black/70"
+  :style="{
+    backgroundColor: 'rgba(80,80,80,0.25)',
+    backdropFilter: 'blur(4px)',
+    WebkitBackdropFilter: 'blur(32px)'
+  }"
+>
+  <div
+    class="w-full max-w-5xl rounded-2xl bg-black border border-white/10 p-6"
+  >
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-xl font-semibold text-white">
+        Create Function
+      </h2>
+
+      <button
+        @click="showCreateFunctionModal = false"
+        class="text-gray-400 hover:text-white text-xl"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="space-y-4">
+
+      <div>
+        <label class="block text-sm text-gray-400 mb-2">
+          Function Name
+        </label>
+
+        <input
+          v-model="functionName"
+          type="text"
+          class="w-full rounded-xl bg-black/30 border border-white/10 px-4 py-3 text-white"
+          placeholder="my-function"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm text-gray-400 mb-2">
+          Language
+        </label>
+
+        <select
+          v-model="functionLanguage"
+          class="w-full rounded-xl bg-black border border-white/10 px-4 py-3 text-white"
+        >
+          <option
+            v-for="language in functionLanguages"
+            :key="language"
+            :value="language"
+          >
+            {{ language }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-sm text-gray-400 mb-2">
+          Code
+        </label>
+
+        <p class="text-xs text-yellow-400 mb-2">
+          Function entrypoint must be:
+          <code>main(event, context)</code>
+        </p>
+
+        <textarea
+          v-model="functionCode"
+          rows="10"
+          class="w-full rounded-xl bg-black/30 border border-white/10 px-4 py-3 text-white font-mono"
+          placeholder="def main(event, context): ..."
+        />
+      </div>
+
+      <div
+        v-if="functionError"
+        class="rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-red-400"
+      >
+        {{ functionError }}
+      </div>
+
+      <div class="flex gap-3">
+        <button
+          @click="createFunction"
+          :disabled="creatingFunction"
+          class="flex-1 py-3 rounded-xl bg-white text-black font-semibold"
+        >
+          {{
+            creatingFunction
+              ? 'Creating Function...'
+              : 'Create Function'
+          }}
+        </button>
+
+        <button
+          @click="showCreateFunctionModal = false"
+          class="px-8 py-3 rounded-xl bg-white text-black"
+        >
+          Close
+        </button>
+      </div>
+
+    </div>
   </div>
 </div>
         
